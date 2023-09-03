@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CadastroComentarioComponent } from './comentarios/cadastro-comentario/cadastro-comentario.component';
+import { ComentariosComponent } from './comentarios/comentarios.component';
 import { CadastroPaisesComponent } from './paises/cadastro-paises/cadastro-paises.component';
 import { PaisesComponent } from './paises/paises.component';
 import { CadastroPontosTuristicosComponent } from './pontos-turisticos/cadastro-pontos-turisticos/cadastro-pontos-turisticos.component';
@@ -43,7 +44,6 @@ const routes: Routes = [
       },
       {
         path: 'cadastro',
-        pathMatch: 'full',
         children:[
           {
             path: '',
@@ -55,20 +55,42 @@ const routes: Routes = [
             path: ':idPontoTuristico',
             component: CadastroPontosTuristicosComponent,
             data: { tipoCadastroPontoTuristico: 'view' },
+            
+          }
+        ]
+      },
+      {
+        path: ':idPontoTuristico',
+        data: { tipoCadastroPontoTuristico: 'view' },
+        children: [
+          {
+            path: 'comentario',
             children: [
               {
-                path: 'comentario',
-                children: [
+                path: '',
+                pathMatch: 'full',
+                component: ComentariosComponent,
+                data: { tipoCadastroComentario: 'new' }
+              },
+              {
+                path: ':idComentario',
+                component: ComentariosComponent,
+                data: { tipoCadastroComentario: 'view' }
+              },
+              {
+                path: 'cadastro',
+                children:[
                   {
                     path: '',
                     pathMatch: 'full',
                     component: CadastroComentarioComponent,
-                    data: { tipoCadastroComentario: 'new' }
+                    data: { tipoCadastroPontoTuristico: 'new' }
                   },
                   {
                     path: ':idComentario',
                     component: CadastroComentarioComponent,
-                    data: { tipoCadastroComentario: 'view' }
+                    data: { tipoCadastroPontoTuristico: 'view' },
+                    
                   }
                 ]
               }
@@ -78,10 +100,7 @@ const routes: Routes = [
       }
     ]
   },
-  {
-    path: "**",
-    redirectTo: "pais"
-  }
+
 ];
 
 @NgModule({

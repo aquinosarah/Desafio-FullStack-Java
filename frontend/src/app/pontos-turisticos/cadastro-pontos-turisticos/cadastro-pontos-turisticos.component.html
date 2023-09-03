@@ -1,4 +1,43 @@
-<po-page-detail 
-    p-title="Novo Ponto Turistico">
-
+<po-page-detail
+	[p-title]="title">
+    <po-input 
+    class="po-sm-4 po-md-4 po-lg-3 po-xl-2"
+    formControlName="pais"
+    p-label="País">
+</po-input>
+       <po-input 
+			class="po-sm-4 po-md-4 po-lg-3 po-xl-2"
+			formControlName="cidade"            
+			p-label="Cidade">
+		</po-input>
+	<form [formGroup]="formPontoTuristico">
+		<po-input 
+			class="po-sm-4 po-md-4 po-lg-3 po-xl-2"
+			formControlName="nome"
+			p-label="Nome do Ponto Turístico">
+		</po-input>
+		<po-combo 
+			class="po-sm-4 po-md-4 po-lg-3 po-xl-1"
+			name="combo"
+			formControlName="estacao"   
+			p-label="Estações do Ano" 
+			[p-options]="[{ value: 'Primavera' }, { value: 'Verão' }, { value: 'Outono' }, { value: 'Inverno' },{ value: 'Todas' }]"> 
+		</po-combo>
+		<po-input 
+			class="po-sm-12 po-md-12 po-lg-5 po-xl-5"
+			formControlName="descricao"
+			p-label="Breve Descrição">
+		</po-input>
+	</form>
+	
+	<div class="po-row po-pt-2" style="justify-content: flex-end;">
+		<po-button 
+			class="po-sm-3 po-md-3 po-lg-1 po-xl-1"
+			(p-click)="salvar()"
+			p-label="Salvar"></po-button>
+		<po-button 
+			class="po-sm-3 po-md-3 po-lg-1 po-xl-1"
+			(p-click)="voltar()"
+			p-label="Cancelar"></po-button>
+	</div>
 </po-page-detail>

@@ -1,4 +1,44 @@
-<po-page-detail
-    p-title="Cadastro de comentários">
+<po-page-default
+    p-title="Ponto Turístico - Comentários">
 
-</po-page-detail>>
+    <po-table
+        class="po-sm-12 po-pt-2"
+        p-container="true"
+        [p-actions-right]="true"
+        [p-columns]="lsColumns2"
+        [p-items]="lsPontosTuristicos">
+    </po-table>
+
+    <div class="po-sm-12 po-pt-2"></div>
+
+    <po-button 
+        class="po-sm-6 po-md-4 po-lg-2 po-xl-2"
+        p-label="Novo Comentário"
+        (p-click)="navegarParaCadastroCM()">
+    </po-button>
+
+    <div *ngIf="this.lsComentarios.length > 0">
+        <po-table
+            class="po-sm-12 po-pt-2"
+            p-container="true"
+            [p-actions-right]="true"
+            [p-actions]="lsActions"
+            [p-columns]="lsColumns"
+            [p-items]="lsComentarios">
+        </po-table>
+    </div>
+
+    <div *ngIf="this.lsComentarios.length == 0" style="text-align: center;">
+        <po-page-default
+            p-title="SEJA O PRIMEIRO A COMENTAR">
+        </po-page-default>
+    </div>
+
+    <div class="po-row po-pt-2" style="justify-content: flex-end;">
+        <po-button 
+            class="po-sm-3 po-md-3 po-lg-1 po-xl-1"
+            (p-click)="voltar()"
+            p-label="Voltar">
+        </po-button>
+    </div>
+</po-page-default>
